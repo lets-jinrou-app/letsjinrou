@@ -1,0 +1,10 @@
+Build以下の*.unitywebはファイル中に、ディレクトリ名があるので(それが影響するかは分からないが)、
+一応、どのビルドでもBuildGLフォルダに出力するようにする。
+同じときに作成したものであれば、BuildGL.data.unitywebのみ中身が違って、
+BuildGL.wasm.code.unitywebとBuildGl.wasm.framework.unitywebは中身が同じなので、
+dataのみそれぞれに持つようにする。
+*.jsonはそれぞれ用に作成しているので、Buildの度に更新する必要はない。
+したがって、
+
+*.unitywebの3つのファイルのコピー。
+部屋を増やす場合は、*.data.unitywebを複数作る。jsonやhtmlはそれに合わせて修正。
