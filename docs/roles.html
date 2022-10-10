@@ -1,0 +1,860 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name=”robots” content=”noindex” />
+    <title>人狼しようず - 役職</title>
+    <link rel="stylesheet" type="text/css" href="letsjinroustyle.css">
+    <link rel="INDEX" href=".index.html">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <link rel="icon" sizes="16x16" href="TemplateData/favicon.ico" />
+</head>
+
+<body>
+    <div class="all">
+        <!-- ヘッダーはじまり -->
+        <div class="headerfutter">
+            <a class="linkimage" href="index.html"><img src="img/Title.png" width="480" height="150" alt="title" id="page_top"></a>
+        </div>
+        <!-- ヘッダー終わり -->
+
+        <h2>◇ 役職について ◇</h2>
+        <a href="#win_requirement">陣営と勝利条件</a>
+        　<a href="#role_list">役職一覧</a>
+        　<a href="#role_detail">役職結果早見表</a>
+        <hr class="splitline"><!-- 区切り線 -->
+
+        「人狼しようず」で実装している陣営と役職の一覧です。<br>
+        基本的にハンゲーム様の人狼パーティーであった役職の仕様と同じですが、以下は異なります。<br>
+        <ul>
+            <li>占い師・占い師もどき・忍者が初日、占い先・偵察先を選ばなかった場合、ランダムで占い・偵察が行われます。
+            <li>逃亡者が妖狐に逃げてその妖狐が襲撃された場合、その逃げた逃亡者のみ死亡します。
+            <li>交信できる吸血鬼「交信吸血鬼」を追加しています。
+        </ul>
+
+        <h2 id="win_requirement">◇ 陣営と勝利条件 ◇</h2>
+        <table class="roleslist">
+            <tr class="listtitle">
+                <th>陣営</th>
+                <th>勝利条件</th>
+            </tr>
+            <tr class="villager">
+                <td class="camp"><a href="#villager_detail">村人陣営</a></td>
+                <td class="win">人狼を全て追放すること。<br>
+                    妖狐陣営・恋人陣営・吸血鬼陣営・特殊陣営がいる場合に、これらのいずれかが勝利条件を満たすと敗北。</td>
+            </tr>
+            <tr class="wolf">
+                <td class="camp"><a href="#wolf_detail">人狼陣営</a></td>
+                <td class="win">人狼の数を村人陣営の数以上にすること。<br>
+                    妖狐陣営・恋人陣営・吸血鬼陣営・特殊陣営がいる場合に、これらのいずれかが勝利条件を満たすと敗北。</td>
+            </tr>
+            <tr class="fox">
+                <td class="camp"><a href="#fox_detail">妖狐陣営</a></td>
+                <td class="win">村人陣営か人狼陣営が勝利条件を満たしたときに妖狐が生存していること。<br>
+                    恋人陣営が生存していないこと。</td>
+            </tr>
+            <tr class="lovers">
+                <td class="camp"><a href="#lovers_detail">恋人陣営</a></td>
+                <td class="win">村人陣営か人狼陣営が勝利条件を満たしたときに自分と相方が生存していること。<br>
+                    小悪魔は自分と本命が生存していること。</td>
+            </tr>
+            <tr class="vampire">
+                <td class="camp"><a href="#vampire_detail">吸血鬼陣営</a></td>
+                <td class="win">生存者のうち自分を含む半数超過を吸血鬼にしたら単独勝利となります。<br>
+                    (※吸血された人は勝利しません)</td>
+            </tr>
+            <tr class="fugitive">
+                <td class="camp"><a href="#fugitive_detail">特殊陣営</a></td>
+                <td class="win">村人陣営か人狼陣営が勝利条件を満たしたときに自分が生存していること。<br>
+                    恋人陣営が生存していないこと。</td>
+            </tr>
+        </table>
+
+        <h2 id="role_list">◇ 役職一覧 ◇</h2>
+        <table class="roleslist">
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>専用チャット</th>
+                <th>役割</th>
+            </tr>
+            <tr class="villager">
+                <td class="role" id="villager_detail">村人</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">なんの<strong>能力もない</strong>村人。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">預言者</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">毎晩誰かを<strong>占って人狼かそうでないかを知る</strong>ことができる。<br>
+                    0日目の夜は<strong>人狼でない人を1人知る</strong>ことができる。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">占い師</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">毎晩誰かを<strong>占って人狼かそうでないかを知る</strong>ことができる。<br>
+                    0日目の夜から<strong>誰か1人を占う</strong>ことができる。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">預言者もどき</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">預言者だと思い込んでいる村人。<strong>能力はない</strong>。<br>
+                    役職カードは「預言者」として表示される。<br>
+                    毎晩誰かを占うことができるが結果は必ず人間と出る。<br>
+                    0日目に人狼でない人を1人知らされるが人間とは限らない。<br>
+                    (夜時間に能力行使できる)</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">占い師もどき</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">占い師だと思い込んでいる村人。<strong>能力はない</strong>。<br>
+                    役職カードは「占い師」として表示される。<br>
+                    毎晩誰かを占うことができるが結果は必ず人間と出る。<br>
+                    0日目に誰かを占うことができるが結果は必ず人間と出る。<br>
+                    (夜時間に能力行使できる)</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">忍者</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">毎晩誰かの<strong>行動を調べる</strong>(偵察する)ことができる。<br>
+                    夜に行動をする役職を偵察すると、行動していると判定される。<br>
+                    夜に行動をしていない役職を偵察すると、行動していないと判定される。<br>
+                    0日目の夜のみ行動する役職(小悪魔)は、夜に行動していないと判定される。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">霊媒師</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">昨日<strong>追放された人が人狼か否かを知る</strong>ことができる。<br>
+                    人狼でない場合は「人狼ではない」と出る。<br>
+                    追放された人が2人以上の場合は、全員の結果を知ることができる。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">霊媒師もどき</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">霊媒師だと思いこんでいる村人。<strong>能力はない</strong>。<br>
+                    役職カードは「霊媒師」として表示される。<br>
+                    昨日追放された人の霊媒結果は必ず人間と出る。<br>
+                    追放された人が2人以上の場合は、全員の結果を知ることができる。<br>
+                    (夜時間に能力行使できる)</td>
+            </tr>
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>専用チャット</th>
+                <th>役割</th>
+            </tr>
+            <tr class="villager">
+                <td class="role">狩人</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">人狼の襲撃・吸血鬼の吸血から守ることができる。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができない。</strong></td>
+            </tr>
+            <tr class="villager">
+                <td class="role">騎士</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">人狼の襲撃・吸血鬼の吸血から守ることができる。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができる。</strong></td>
+            </tr>
+            <tr class="villager">
+                <td class="role">闇騎士</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">人狼の襲撃・吸血鬼の吸血から守ることができる。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができる。</strong><br>
+                    占われると<strong>「人狼」</strong>と判定される。霊媒結果も<strong>「人狼」</strong>と判定される。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">狩人もどき</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">狩人だと思いこんでいる村人。<strong>能力はない</strong>。<br>
+                    役職カードは「狩人」として表示される。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができない。</strong><br>
+                    (夜時間に能力行使できる)</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">騎士もどき</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">騎士だと思いこんでいる村人。<strong>能力はない</strong>。<br>
+                    役職カードは「騎士」として表示される。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができる。</strong><br>
+                    (夜時間に能力行使できる)</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">侍</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">人狼の襲撃・吸血鬼の吸血から守ることができる。<br>
+                    護衛が成功すると<strong>襲撃した人狼や吸血鬼と相打ちして共に自分も翌朝死ぬ</strong>。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができない。</strong></td>
+            </tr>
+            <tr class="villager">
+                <td class="role">剣豪</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">人狼の襲撃・吸血鬼の吸血から守ることができる。<br>
+                    護衛が成功すると<strong>襲撃した人狼や吸血鬼が翌朝死ぬ</strong>。<br>
+                    自分を守ることができない。<br>
+                    <strong>連続して同じ人を守ることができない。</strong></td>
+            </tr>
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>専用チャット</th>
+                <th>役割</th>
+            </tr>
+            <tr class="villager">
+                <td class="role">共有者</td>
+                <td class="rolechat">△</td>
+                <td rowspan="2" class="roleabout"><strong>お互いが村人である</strong>ことを知っている。<br>
+                    共有者と交信共有者がいた場合、共有者は交信共有者の専用チャットを見ることができるが書き込むことはできない。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">交信共有者</td>
+                <td class="rolechat">○</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">双子</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>お互いが村人である</strong>ことを知っている。<br>
+                    片一方が死んだら自分も翌朝<strong>後追い</strong>で死ぬ。<br>
+                    役職欠けありルールで欠けた場合片一方も翌朝後追いで死ぬ。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">猫又</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>追放されるとランダムに</strong>誰かを陣営や役職を問わずに<strong>道連れ</strong>にする。<br>
+                    人狼に<strong>襲撃されると、襲撃した人狼を道連れ</strong>にする。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">パン屋</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"> <strong>生存していると</strong>毎朝村人に焼きたての<strong>パンを配る</strong>。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">ハンター</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">追放されたり襲撃されたりして死んだ場合、<strong>誰かを指定して道連れ</strong>にすることができる。
+                    役職欠けありルールで欠けた場合ランダムで誰かを道連れにする。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">サンタ</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>生存していたら</strong>自分以外の誰かに<strong>プレゼントを贈る</strong>ことができる。<br>
+                    夜に贈り先を選ばなかった場合、ランダムにプレゼントが贈られる。<br>
+                    襲撃された場合、次の日の朝のプレゼントは届く。</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">おばけ</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">村人<strong>カウントのない</strong>村人。<br>
+                    村のためにがんばるいいおばけ。</td>
+            </tr>
+
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>専用チャット</th>
+                <th>役割</th>
+            </tr>
+            <tr class="wolf">
+                <td class="role" id="wolf_detail">人狼</td>
+                <td class="rolechat">△</td>
+                <td class="roleabout" rowspan="2"><strong>毎晩誰かを襲撃する</strong>ことができる。仲間の人狼が誰かを知っている。<br>
+                    人狼と交信人狼がいた場合、人狼は交信人狼の専用チャットを見ることができるが書き込むことはできない。</td>
+            </tr>
+            <tr class="wolf">
+                <td class="role">交信人狼</td>
+                <td class="rolechat">○</td>
+            </tr>
+            <tr class="wolf">
+                <td class="role">狂人</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">人狼の味方だが、<strong>人狼が誰かは知らない</strong>。</td>
+            </tr>
+            <tr class="wolf">
+                <td class="role">狂信者</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>人狼が誰なのかを知っている。</strong></td>
+            </tr>
+
+            <tr class="fox">
+                <td class="role" id="fox_detail">妖狐</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>占われると翌朝死ぬ。</strong><br>
+                    人狼に<strong>襲撃されても死なない</strong>。<br>
+                    人間の数にカウントされない。<br>
+                    妖狐が複数いる場合お互いを知ることはできない。</td>
+            </tr>
+            <tr class="fox">
+                <td class="role">背徳者</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>妖狐が誰かを知っている。</strong><br>
+                    妖狐が死に勝利条件を失うと翌朝<strong>後追い</strong>で死ぬ。</td>
+            </tr>
+
+            <tr class="lovers">
+                <td class="role" id="lovers_detail">恋人</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>お互いが恋人である</strong>ことを知っている。<br>
+                    片一方が死んだら自分も翌朝<strong>後追い</strong>で死ぬ。</td>
+            </tr>
+            <tr class="lovers">
+                <td class="role">大人の恋人</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>お互いが恋人である</strong>ことを知っている。<br>
+                    片一方が死んだら自分も翌朝<strong>後追い</strong>で死ぬ。<br>
+                    毎晩<strong>どちらかの家に逃げ込む</strong>ことができる。<br>
+                    逃げ込んだ方が人狼に襲撃されても襲撃を回避し死なない。<br>
+                    逃げ込まれた方が人狼に襲撃されると翌朝二人とも死ぬ。</td>
+            </tr>
+            <tr class="lovers">
+                <td class="role">小悪魔</td>
+                <td class="rolechat">初日夜のみ</td>
+                <td class="roleabout">初日の夜に<strong>2人の恋人候補</strong>を指定して、そのうち<strong>1人を本命</strong>に、
+                    もう<strong>1人を遊び相手</strong>にすることができる。<br>
+                    <strong>本命は</strong>元の役職の能力を保持したまま<strong>恋人陣営に変わる</strong>。<br>
+                    <strong>遊び相手は</strong>元の役職の能力を保持したまま<strong>陣営は変わらない</strong>。<br>
+                    本命が死ぬと自分も翌朝<strong>後追い</strong>で死ぬ。遊び相手が死んでも自分は死なない。<br>
+                    小悪魔が死ぬと本命は翌朝後追いで死ぬ。<br>
+                    恋人陣営・吸血鬼は恋人候補に選ぶことができない。</td>
+            </tr>
+
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>専用チャット</th>
+                <th>役割</th>
+            </tr>
+            <tr class="vampire">
+                <td class="role" id="vampire_detail">吸血鬼</td>
+                <td class="rolechat">△</td>
+                <td class="roleabout" rowspan="2">毎晩誰かを<strong>1人襲い吸血する</strong>ことが出来る。<br>
+                    人狼と人数カウントのない人(妖狐・おばけ等)は吸血できない。<br>
+                    それ以外は吸血することができる。<br>
+                    吸血された人間は吸血に気付いていないので陣営も勝利条件も変わらない。<br>
+                    毎晩吸血された人が居たかどうかが毎朝告知される。 <br>
+                    襲撃されると死ぬ。追放されても死ぬ。<strong>占われても死ぬ</strong>。<br>
+                    占い結果と霊媒結果は人間。吸血先が護衛されていたら吸血できない。<br>
+                    吸血鬼のところに逃亡者が逃げると吸血される。<br>
+                    逃亡者の逃亡先を吸血すると、逃亡者と逃亡先の両方が吸血される。<br>
+                    逃亡者を吸血すると逃げているので吸血できない。<br>
+                    逃亡者が人狼のところに逃げて、吸血鬼が人狼を吸血すると「吸血された」とアナウンスが出るが逃亡者は翌朝死ぬ。<br>
+                    大人の恋人が逃げた先を吸血したら両方とも吸血される。<br>
+                    吸血鬼と交信吸血鬼がいた場合、吸血鬼は交信吸血鬼の専用チャットを見ることができるが書き込むことはできない。</td>
+            </tr>
+            <tr class="vampire">
+                <td class="role">交信吸血鬼</td>
+                <td class="rolechat">○</td>
+            </tr>
+            <tr class="vampire">
+                <td class="role">吸血鬼の眷属</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout"><strong>吸血鬼が誰かを知っている</strong>。吸血されていない人間。<br>
+                    吸血鬼が死に勝利条件を失うと翌朝<strong>後追い</strong>で死ぬ。<br>
+                    吸血鬼が勝利したら同時に勝利する。自分は生存していなくてもよい。</td>
+            </tr>
+
+            <tr class="fugitive">
+                <td class="role" id="fugitive_detail">逃亡者</td>
+                <td class="rolechat">×</td>
+                <td class="roleabout">毎晩<strong>誰かのところに逃げる</strong>ことができる。<br>
+                    人狼に襲撃されても逃げているので死なない。<br>
+                    逃げたところが人狼だった場合翌朝死ぬ。<br>
+                    逃げたところが人狼に襲撃された場合は逃げたところの人と共に死ぬ。<br>
+                    ただし、狐に逃げてその逃げ先の狐が襲撃された場合は、自分だけ死ぬ。<br>
+                    逃げたところが人狼に襲撃されてかつ守られた場合は共に死なない。<br>
+                    逃げ先を<strong>指定しなかった場合、ランダム</strong>に逃げ先が決められる。</td>
+            </tr>
+
+        </table>
+
+        <h2 id="role_detail">◇ 役職結果速見表 ◇</h2>
+
+        <table class="roleslist">
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>陣営</th>
+                <th>特徴</th>
+                <th>占い結果</th>
+                <th>霊媒結果</th>
+                <th>夜の行動</th>
+                <th>襲撃</th>
+                <th>陣営カウント</th>
+                <th>人数カウント</th>
+                <th>役職欠け</th>
+            </tr>
+
+            <tr class="villager">
+                <td class="role">村人</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">預言者</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">初日白のみ</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">占い師</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">預言者もどき</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">結果白のみ</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">占い師もどき</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">結果白のみ</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">忍者</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">霊媒師</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">霊媒師もどき</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">結果白のみ</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">狩人</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガなし</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">騎士</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">闇騎士</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガあり</td>
+                <td class="fortune1">人狼</td>
+                <td class="shaman1">人狼</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">狩人もどき</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガなし</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">騎士もどき</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">侍</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガなし</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">剣豪</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">連ガなし</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">共有者</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">交信共有者</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">双子</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">後追いあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">猫又</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">道連れする</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">パン屋</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">ハンター</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point">道連れする</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">サンタ</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="villager">
+                <td class="role">おばけ</td>
+                <td class="camp2">村人陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count0">0</td>
+                <td class="missing1">する</td>
+            </tr>
+
+            <tr class="listtitle">
+                <th>役職</th>
+                <th>陣営</th>
+                <th>特徴</th>
+                <th>占い結果</th>
+                <th>霊媒結果</th>
+                <th>夜の行動</th>
+                <th>襲撃</th>
+                <th>陣営カウント</th>
+                <th>人数カウント</th>
+                <th>役職欠け</th>
+            </tr>
+
+            <tr class="wolf">
+                <td class="role">人狼</td>
+                <td class="camp2">人狼陣営</td>
+                <td class="point"></td>
+                <td class="fortune1">人狼</td>
+                <td class="shaman1">人狼</td>
+                <td class="act1">あり</td>
+                <td class="attack2">―</td>
+                <td class="countcamp1">人狼陣営</td>
+                <td class="count2">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="wolf">
+                <td class="role">交信人狼</td>
+                <td class="camp2">人狼陣営</td>
+                <td class="point"></td>
+                <td class="fortune1">人狼</td>
+                <td class="shaman1">人狼</td>
+                <td class="act1">あり</td>
+                <td class="attack2">―</td>
+                <td class="countcamp1">人狼陣営</td>
+                <td class="count2">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="wolf">
+                <td class="role">狂人</td>
+                <td class="camp2">人狼陣営</td>
+                <td class="point">狼分からない</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+            <tr class="wolf">
+                <td class="role">狂信者</td>
+                <td class="camp2">人狼陣営</td>
+                <td class="point">狼分かる</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+
+            <tr class="fox">
+                <td class="role">妖狐</td>
+                <td class="camp2">妖狐陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間(死ぬ)</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack0">死なない</td>
+                <td class="countcamp2">なし</td>
+                <td class="count0">0</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="fox">
+                <td class="role">背徳者</td>
+                <td class="camp2">妖狐陣営</td>
+                <td class="point">後追いあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+
+            <tr class="lovers">
+                <td class="role" id="lovers_detail">恋人</td>
+                <td class="camp2">恋人陣営</td>
+                <td class="point">後追いあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="lovers">
+                <td class="role">大人の恋人</td>
+                <td class="camp2">恋人陣営</td>
+                <td class="point">後追いあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ※</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="lovers">
+                <td class="role">小悪魔</td>
+                <td class="camp2">恋人陣営</td>
+                <td class="point">後追いあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+
+            <tr class="vampire">
+                <td class="role">吸血鬼</td>
+                <td class="camp2">吸血鬼陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間(死ぬ)</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="vampire">
+                <td class="role">交信吸血鬼</td>
+                <td class="camp2">吸血鬼陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間(死ぬ)</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+            <tr class="vampire">
+                <td class="role">吸血鬼の眷属</td>
+                <td class="camp2">吸血鬼陣営</td>
+                <td class="point">後追いあり</td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act0">なし</td>
+                <td class="attack1">死ぬ</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing1">する</td>
+            </tr>
+
+            <tr class="fugitive">
+                <td class="role">逃亡者</td>
+                <td class="camp2">特殊陣営</td>
+                <td class="point"></td>
+                <td class="fortune0">人間</td>
+                <td class="shaman0">人間</td>
+                <td class="act1">あり</td>
+                <td class="attack1">死ぬ※</td>
+                <td class="countcamp0">村人陣営</td>
+                <td class="count1">1</td>
+                <td class="missing0">しない</td>
+            </tr>
+
+        </table>
+        <small>
+            <div align="right">※ 大人の恋人・逃亡者の襲撃は、泊まり先・逃げ先が襲撃された場合</div>
+        </small>
+
+        <a href="#page_top">上へ戻る</a>
+
+        <hr class="splitline"><!-- 区切り線 -->
+        <a href="roles.html">役職一覧</a>
+        　<a href="about.html">本サイトについて</a>
+        　<a href="parts.html">素材について</a>
+        <br>
+        <a href="history.html">更新履歴</a>
+        　<a href="ToS.html">利用規約</a>
+        　<a href="policy.html">プライバシーポリシー</a>
+        <hr class="splitline"><!-- 区切り線 -->
+        <address>Copyright(c)2019-2022 人狼しようず all rights reserved.
+            <a class="linkimage" href="https://twitter.com/letsjinrou?lang=ja" target="_blank"
+                rel="noopener noreferrer"><i class="fab fa-twitter fa-lg"></i></a>
+        </address>
+    </div>
+</body>
+
+</html>

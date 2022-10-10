@@ -1,0 +1,51 @@
+body {
+    margin: 20px;
+    background-image: url("img/b006.gif");
+    -webkit-text-size-adjust: 100%;
+}
+
+.all {
+    max-width: 700px;
+    /*border-color:#999999;*/
+    /*border-width:2px;*/
+    /*border-style:solid;*/
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+
+.headerfutter {
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.returntop {
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.kiyakuright {
+    /*width:700px;*/
+    margin-right: auto;
+    margin-left: auto;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+a.linkimage:hover {
+    background-color: transparent;
+}
+
+address {
+    /*font-style:normal;*/
+    text-align: center;
+}
+
+.fa-twitter {
+    color: #00ACEE;
+}

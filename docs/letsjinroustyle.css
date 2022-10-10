@@ -1,0 +1,316 @@
+body {
+    margin: 20px;
+    background-image: url("img/b100.jpg");
+    /*background-color: #000000;*/
+    -webkit-text-size-adjust: 100%;
+    color: #bbbbbb;
+}
+
+.all {
+    /* width: 900px; */
+    /*border-color:#999999;*/
+    /*border-width:2px;*/
+    /*border-style:solid;*/
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.all_limit {
+    width: 900px;
+    /*border-color:#999999;*/
+    /*border-width:2px;*/
+    /*border-style:solid;*/
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.headerfutter {
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.profile {
+    width: 550px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+
+.returntop {
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.splitline {
+    width: 500px;
+}
+
+.roleslist {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.listtitle {
+    background-color: navy;
+}
+
+/* 陣営と勝利条件 */
+.camp {
+    width: 100px;
+}
+
+.win {
+    /*width:500px;*/
+    text-align: left;
+    padding: 8px;
+}
+
+/* 役職一覧 */
+.role {
+    width: 100px;
+}
+
+.rolechat {
+    width: 100px;
+}
+
+.roleabout {
+    text-align: left;
+    padding: 8px;
+}
+
+/* 役職の色 */
+.villager {
+    background-color: darkgreen;
+}
+
+.wolf {
+    background-color: maroon;
+}
+
+.fox {
+    background-color: olive;
+}
+
+.lovers {
+    background-color: #971585;
+    /*background-color: violet; color: dimgray;*/
+}
+
+.vampire {
+    background-color: royalblue;
+}
+
+.fugitive {
+    background-color: dodgerblue;
+}
+
+/* 役職詳細 */
+.camp2 {
+    width: 85px;
+}
+
+/* 陣営 */
+.point {
+    width: 80pt;
+}
+
+/* 特徴 */
+.fortune0 {
+    width: 80px;
+    background-color: darkgreen;
+}
+
+/* 占い結果 人間 */
+.fortune1 {
+    width: 80px;
+    background-color: maroon;
+}
+
+/* 占い結果 人狼 */
+.shaman0 {
+    width: 75px;
+    background-color: darkgreen;
+}
+
+/* 霊結果 人間 */
+.shaman1 {
+    width: 75px;
+    background-color: maroon;
+}
+
+/* 霊結果 人狼 */
+.attack0 {
+    width: 70px;
+    background-color: olive;
+}
+
+/* 襲撃 襲撃されない */
+.attack1 {
+    width: 70px;
+    background-color: maroon;
+}
+
+/* 襲撃 襲撃される */
+.attack2 {
+    width: 70px;
+    background-color: dimgray;
+}
+
+/* 襲撃 襲撃できない */
+.countcamp0 {
+    width: 100px;
+    background-color: darkgreen;
+}
+
+/* 陣営カウント 村人陣営 */
+.countcamp1 {
+    width: 100px;
+    background-color: maroon;
+}
+
+/* 陣営カウント 狼陣営 */
+.countcamp2 {
+    width: 100px;
+    background-color: olive;
+}
+
+/* 陣営カウント カウントなし */
+.count0 {
+    width: 100px;
+    background-color: olive;
+}
+
+/* 人数カウント 0 */
+.count1 {
+    width: 100px;
+    background-color: darkgreen;
+}
+
+/* 人数カウント 1(村人) */
+.count2 {
+    width: 100px;
+    background-color: maroon;
+}
+
+/* 人数カウント 1(狼) */
+.missing0 {
+    width: 75px;
+    background-color: olive;
+}
+
+/* 役職欠け なし */
+.missing1 {
+    width: 75px;
+    background-color: darkgreen;
+}
+
+/* 役職欠け あり */
+.act0 {
+    width: 75px;
+    background-color: darkgreen;
+}
+
+/* 夜の行動 なし */
+.act1 {
+    width: 75px;
+    background-color: maroon;
+}
+
+/* 夜の行動 あり */
+
+
+/* 素材リスト */
+.partslist {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    border: groove darkgray;
+    /*border-collapse: collapse;*/
+    /*border: groove;*/
+}
+
+.parts {
+    border: solid 1px dimgray;
+    padding: 8px;
+    text-align: left;
+    /*border: inset;*/
+}
+
+.alart {
+    color: #9d473b;
+    text-align: center;
+}
+
+h1 {
+    color: #d2b48c;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+h2 {
+    color: #bdb76b;
+    text-align: center;
+}
+
+h3 {
+    color: #bdb76b;
+    text-align: center;
+}
+
+strong {
+    color: khaki;
+}
+
+.list {
+    margin-left: 210px;
+    text-align: left;
+    margin-right: 130pt;
+}
+
+.history {
+    margin-left: 160pt;
+    margin-right: 160pt;
+    text-align: left;
+}
+
+/*li { margin-left:120px; text-align:left; }*/
+p {
+    color: #bbbbbb;
+    line-height: 0.8em;
+}
+
+a:link {
+    color: thistle;
+}
+
+a:visited {
+    color: rosybrown;
+}
+
+a:hover {
+    color: mediumvioletred;
+    /*background-color: #666666; */
+}
+
+a.linkimage:hover {
+    background-color: transparent;
+}
+
+address {
+    /*font-style:normal;*/
+    text-align: center;
+}
+
+.fa-twitter {
+    color: #00ACEE;
+}
+  
