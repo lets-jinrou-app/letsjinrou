@@ -61,15 +61,36 @@
       }
 
       var contents = document.createElement("script");
+      var myGameInstance = null;
       contents.src = loaderUrl;
       contents.onload = () => {
         createUnityInstance(canvas, config, (/*progress*/) => {
-        }).then((/*unityInstance*/) => {
+          // progressは0~1。%にするなら100を掛ける。
+          // progress表示するならここで
+          // 表示するほど時間かからないのでしない
+        }).then((unityInstance) => {
+          // unityInstanceに対して何かするならここで
+          // fullscreenButton.onclick = () => {
+          //   unityInstance.SetFullscreen(1);
+          // };
+          myGameInstance = unityInstance;
         }).catch((message) => {
           alert(message);
         });
       };
       document.body.appendChild(contents);
+
+      // ウィンドウがアクティブ状態になった場合の処理
+      document.addEventListener('visibilitychange', function () {
+        if( null != myGameInstance ){
+          // visible, hidden, prerender,unloaded
+          if (document.visibilityState == "visible") {
+            myGameInstance.SendMessage("CanvasRoom", "ActiveWindow");
+          }else{
+            myGameInstance.SendMessage("CanvasRoom", "HiddenWindow");
+          }
+        }
+      });
     </script>
   </body>
 </html>
