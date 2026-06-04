@@ -99,17 +99,12 @@
       };
       document.body.appendChild(contents);
 
-      const channel = new BroadcastChannel('game_login_channel');
-      // 新しいタブが開かれたことを他のタブに通知
-      channel.postMessage({ type: 'TAB_ACTIVATED' });
-      console.log( "★★★ post message TAB_ACTIVATED");
+      window.gameChannel = new BroadcastChannel('game_login_channel');
 
       // 他のタブからメッセージを受信した時の処理
-      channel.addEventListener('message', function(event) {
-        console.log( "message" );
+      window.gameChannel.addEventListener('message', function(event) {
         if( null != myGameInstance ){
-          console.log( event.data.type );
-          if (event.data.type === 'TAB_ACTIVATED') {
+          if (event.data.type === 'LOGIN') {
             // 古いタブは強制的にログアウト状態にする
             myGameInstance.SendMessage("RoomProgress", "ForceLogout");
           }
