@@ -99,12 +99,12 @@
       };
       document.body.appendChild(contents);
 
-      window.gameChannel = new BroadcastChannel('game_login_channel');
+      window.jinrouChannel = new BroadcastChannel('lets_jinrou_login_channel');
 
       // 他のタブからメッセージを受信した時の処理
-      window.gameChannel.addEventListener('message', function(event) {
+      window.jinrouChannel.addEventListener('message', function(event) {
         if( null != myGameInstance ){
-          if (event.data.type === 'LOGIN') {
+          if (event.data.type === 'LETS_JINROU_LOGIN') {
             // 古いタブは強制的にログアウト状態にする
             myGameInstance.SendMessage("RoomProgress", "ForceLogout");
           }
